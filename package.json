@@ -1,0 +1,66 @@
+{
+  "name": "svag-init",
+  "version": "0.1.24",
+  "homepage": "https://github.com/svagcrew/svag-init",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svagcrew/svag-init.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svagcrew/svag-init/issues"
+  },
+  "author": {
+    "name": "Sergei Dmitriev",
+    "url": "https://sergei.svag.group"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "./configs/**/*",
+    "./bin/**/*",
+    "./dist/**/*"
+  ],
+  "bin": {
+    "svag-init": "./bin/index.js"
+  },
+  "scripts": {
+    "lint": "svag-lint lint",
+    "prettify": "svag-prettier prettify",
+    "types": "svag-ts types",
+    "build": "svag-ts build",
+    "watch": "svag-ts watch",
+    "test": "echo 'Everything is OK'",
+    "prepare": "ts-patch install -s && husky",
+    "dev": "svag-ts dev",
+    "start": "svag-ts start"
+  },
+  "dependencies": {
+    "dedent": "^1.5.3",
+    "lodash": "^4.17.21",
+    "svag-cli-utils": "^0.1.25",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20.12.7",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.0.0",
+    "husky": "^9.0.11",
+    "jest": "30.0.0-alpha.3",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "svag-husky": "^0.1.6",
+    "svag-jest": "^0.1.25",
+    "svag-lint": "^0.1.29",
+    "svag-prettier": "^0.1.21",
+    "svag-ts": "^0.1.25",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "ts-patch": "^3.1.2",
+    "typescript": "^5.4.5"
+  }
+}
