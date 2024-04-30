@@ -76,6 +76,9 @@ devDependencies:
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
+  typescript-transform-paths:
+    specifier: ^3.4.7
+    version: 3.4.7(typescript@5.4.5)
 
 packages:
 
