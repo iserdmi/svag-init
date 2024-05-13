@@ -6,7 +6,8 @@ import {
   createFile,
   defineCliApp,
   exec,
-  getFirstStringValue,
+  getFlagAsString,
+  getFlagAsBoolean,
   getPackageJsonPath,
   getPathInfo,
   log,
@@ -45,19 +46,41 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       const dirLastname = path.basename(requestedPath)
       await createPackageJson({
         dirPath: requestedPath,
-        public: !!flags.public || !!flags.p || false,
+        public: getFlagAsBoolean({
+          flags,
+          keys: ['public', 'p'],
+          coalesce: true,
+        }),
         cli: !!flags.cli || !!flags.c,
-        owner: getFirstStringValue(flags.owner, flags.o, await getGitConfigValue('user.owner')) || '%YOUR_TEAM%',
-        name: getFirstStringValue(flags.name, flags.n, dirLastname) || '%YOUR_PROJECT%',
-        authorName:
-          getFirstStringValue(flags.authorName, flags.a, await getGitConfigValue('user.name')) || '%YOUR_NAME%',
-        authorUrl: getFirstStringValue(flags.authorUrl, flags.u, await getGitConfigValue('user.url')) || '%YOUR_URL%',
+        owner: getFlagAsString({
+          flags,
+          keys: ['owner', 'o'],
+          coalesce: (await getGitConfigValue('user.owner')) || '%YOUR_TEAM%',
+        }),
+        name: getFlagAsString({
+          flags,
+          keys: ['name', 'n'],
+          coalesce: dirLastname || '%YOUR_PROJECT%',
+        }),
+        authorName: getFlagAsString({
+          flags,
+          keys: ['authorName', 'a'],
+          coalesce: (await getGitConfigValue('user.name')) || '%YOUR_NAME%',
+        }),
+        authorUrl: getFlagAsString({
+          flags,
+          keys: ['authorUrl', 'u'],
+          coalesce: (await getGitConfigValue('user.url')) || '%YOUR_URL%',
+        }),
       })
       break
     }
     case 'gitignore':
     case 'gi': {
-      await createGitignore({ dirPath: requestedPath, config: getFirstStringValue(flags.config, flags.c) || 'base' })
+      await createGitignore({
+        dirPath: requestedPath,
+        config: getFlagAsString({ flags, keys: ['config', 'c'], coalesce: 'base' }),
+      })
       break
     }
     case 'lint':
@@ -83,6 +106,7 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
     case 'h': {
       log.black(`Commands:
       ts-lib — public ts library
+      ts-project — private ts project
 
       package-json | pkg
       gitignore | gi
@@ -107,6 +131,21 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       await throwIfDirNotEmpty()
       await createDir({ cwd: requestedPath })
       await spwn(`pnpm svag-init pkg '${requestedPath}' --public`)
+      await spwn(`pnpm svag-init gi '${requestedPath}'`)
+      await spwn(`pnpm svag-init p '${requestedPath}'`)
+      await spwn(`pnpm svag-init ts '${requestedPath}'`)
+      await spwn(`pnpm svag-init l '${requestedPath}'`)
+      await spwn(`pnpm svag-init j '${requestedPath}'`)
+      await spwn(`pnpm svag-init hu '${requestedPath}'`)
+      await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts') })
+      log.toMemory.black(`Done: ${requestedPath}`)
+      break
+    }
+
+    case 'ts-project': {
+      await throwIfDirNotEmpty()
+      await createDir({ cwd: requestedPath })
+      await spwn(`pnpm svag-init pkg '${requestedPath}'`)
       await spwn(`pnpm svag-init gi '${requestedPath}'`)
       await spwn(`pnpm svag-init p '${requestedPath}'`)
       await spwn(`pnpm svag-init ts '${requestedPath}'`)
