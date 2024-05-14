@@ -1,4 +1,5 @@
+import svagJestConfigBase from 'svag-jest/configs/base.js'
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
-  ...require('svag-jest/configs/base.js'),
+export default {
+  ...svagJestConfigBase,
 }

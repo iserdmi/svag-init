@@ -6,13 +6,15 @@ import {
   createFile,
   defineCliApp,
   exec,
-  getFlagAsString,
   getFlagAsBoolean,
+  getFlagAsString,
   getPackageJsonPath,
   getPathInfo,
   log,
   spawn,
 } from 'svag-cli-utils'
+import { fileURLToPath } from 'url'
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 defineCliApp(async ({ cwd, command, args, argr, flags }) => {
   const requestedPath = path.resolve(cwd, args[0] || '.')
