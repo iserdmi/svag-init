@@ -48,6 +48,7 @@ export const createPackageJson = async (props: {
           private: true,
         }),
     type: 'module',
+    main: './dist/index.js',
     files: [...(props.cli ? ['./bin/**/*'] : []), './dist/**/*'],
     ...(props.cli && {
       bin: {
@@ -70,6 +71,7 @@ export const createPackageJson = async (props: {
       'license',
       'publishConfig',
       'module',
+      'main',
       'bin',
       'files',
       'scripts',
