@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export const createGitignore = async (props: { config?: string; dirPath: string }) => {
   log.green('Creating .gitignore config file...')
   const filePath = path.resolve(props.dirPath, '.gitignore')
-  const { fileExists: configExists } = await isFileExists({ filePath: filePath })
+  const { fileExists: configExists } = await isFileExists({ filePath })
   if (configExists) {
     log.toMemory.black(`${filePath}: file already exists`)
     return

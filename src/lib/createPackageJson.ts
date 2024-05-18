@@ -1,6 +1,6 @@
+import { promises as fs } from 'fs'
 import path from 'path'
 import { isDirExists, isFileExists, jsonStringify, log } from 'svag-cli-utils'
-import { promises as fs } from 'fs'
 
 export const createPackageJson = async (props: {
   dirPath: string

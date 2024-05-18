@@ -21,8 +21,8 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
   const argrExceptPath = argr[0]?.startsWith('-') ? argr : argr.slice(1)
   const { packageJsonPath } = await getPackageJsonPath({ cwd: __dirname })
   const dirPathHere = path.dirname(packageJsonPath)
-  const spwn = async (command: string) => {
-    await spawn({ cwd: dirPathHere, exitOnFailure: true, command })
+  const spwn = async (cmd: string) => {
+    await spawn({ cwd: dirPathHere, exitOnFailure: true, command: cmd })
   }
 
   const throwIfDirNotEmpty = async () => {
