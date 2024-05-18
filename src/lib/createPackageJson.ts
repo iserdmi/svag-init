@@ -49,7 +49,7 @@ export const createPackageJson = async (props: {
         }),
     type: 'module',
     main: './dist/index.js',
-    files: [...(props.cli ? ['./bin/**/*'] : []), './dist/**/*'],
+    files: ['./src/**/*', './dist/**/*', ...(props.cli ? ['./bin/**/*'] : [])],
     ...(props.cli && {
       bin: {
         'svag-init': './bin/index.js',
