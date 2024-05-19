@@ -139,7 +139,7 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       await spwn(`pnpm svag-init l '${requestedPath}'`)
       await spwn(`pnpm svag-init j '${requestedPath}'`)
       await spwn(`pnpm svag-init hu '${requestedPath}'`)
-      await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts') })
+      await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts'), content: `export const x = 1\n` })
       log.toMemory.black(`Done: ${requestedPath}`)
       break
     }
@@ -154,7 +154,7 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       await spwn(`pnpm svag-init l '${requestedPath}'`)
       await spwn(`pnpm svag-init j '${requestedPath}'`)
       await spwn(`pnpm svag-init hu '${requestedPath}'`)
-      await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts') })
+      await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts'), content: `export const x = 1\n` })
       log.toMemory.black(`Done: ${requestedPath}`)
       break
     }
