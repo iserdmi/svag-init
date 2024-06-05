@@ -41,7 +41,7 @@
   "dependencies": {
     "dedent": "^1.5.3",
     "lodash": "^4.17.21",
-    "svag-cli-utils": "^0.1.65",
+    "svag-cli-utils": "^0.1.67",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -56,12 +56,13 @@
     "onchange": "^7.1.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "svag-husky": "^0.1.47",
-    "svag-jest": "^0.1.38",
-    "svag-lint": "^0.1.70",
-    "svag-prettier": "^0.1.61",
-    "svag-ts": "^0.1.66",
+    "svag-husky": "^0.1.49",
+    "svag-jest": "^0.1.39",
+    "svag-lint": "^0.1.72",
+    "svag-prettier": "^0.1.63",
+    "svag-ts": "^0.1.68",
     "ts-jest": "^29.1.2",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
   }
 }
