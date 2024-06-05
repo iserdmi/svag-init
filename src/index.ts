@@ -1,5 +1,5 @@
-import { createGitignore } from '@/lib/createGitignore'
-import { createPackageJson } from '@/lib/createPackageJson'
+import { createGitignore } from '@/lib/createGitignore.js'
+import { createPackageJson } from '@/lib/createPackageJson.js'
 import path from 'path'
 import {
   createDir,
