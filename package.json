@@ -1,6 +1,6 @@
 {
   "name": "svag-init",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "homepage": "https://github.com/svagcrew/svag-init",
   "repository": {
     "type": "git",
@@ -17,26 +17,25 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module",
+  "bin": {
+    "svag-init": "./bin/index.js"
+  },
   "files": [
     "./src/**/*",
     "./dist/**/*",
     "./bin/**/*",
     "./configs/**/*"
   ],
-  "bin": {
-    "svag-init": "./bin/index.js"
-  },
   "scripts": {
-    "lint": "svag-lint lint",
-    "prettify": "svag-prettier prettify",
-    "types": "svag-ts types",
     "build": "svag-ts build",
-    "watch": "svag-ts watch",
-    "test": "echo 'Everything is OK'",
-    "prepare": "husky",
     "dev": "svag-ts dev",
-    "start": "svag-ts start"
+    "lint": "svag-lint lint",
+    "prepare": "husky",
+    "prettify": "svag-prettier prettify",
+    "start": "svag-ts start",
+    "test": "echo 'Everything is OK'",
+    "types": "svag-ts types",
+    "watch": "svag-ts watch"
   },
   "dependencies": {
     "dedent": "^1.5.3",
@@ -64,5 +63,6 @@
     "ts-jest": "^29.1.2",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
-  }
+  },
+  "type": "module"
 }
