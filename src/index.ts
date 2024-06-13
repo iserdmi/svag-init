@@ -85,6 +85,12 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       })
       break
     }
+    case 'gitrepo':
+    case 'gr': {
+      await spawn({ command: `git init`, cwd: requestedPath })
+      await spawn({ command: `git branch -M main`, cwd: requestedPath })
+      break
+    }
     case 'lint':
     case 'l':
       await spwn(`pnpm svag-lint init ${requestedPath} ${argrExceptPath.join(' ')}`)
@@ -139,6 +145,7 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       await spwn(`pnpm svag-init l '${requestedPath}'`)
       await spwn(`pnpm svag-init j '${requestedPath}'`)
       await spwn(`pnpm svag-init hu '${requestedPath}'`)
+      await spwn(`pnpm svag-init gr '${requestedPath}'`)
       await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts'), content: `export const x = 1\n` })
       log.toMemory.black(`Done: ${requestedPath}`)
       break
@@ -154,6 +161,7 @@ defineCliApp(async ({ cwd, command, args, argr, flags }) => {
       await spwn(`pnpm svag-init l '${requestedPath}'`)
       await spwn(`pnpm svag-init j '${requestedPath}'`)
       await spwn(`pnpm svag-init hu '${requestedPath}'`)
+      await spwn(`pnpm svag-init gr '${requestedPath}'`)
       await createFile({ cwd: path.resolve(requestedPath, 'src/index.ts'), content: `export const x = 1\n` })
       log.toMemory.black(`Done: ${requestedPath}`)
       break
